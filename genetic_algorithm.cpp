@@ -49,7 +49,7 @@ void genetic_algorithm::mutate(tour &a) {
     default_random_engine gen(time(0));
     uniform_real_distribution<double> realDistribution(0,1);
 
-    for(int i = 0; i < CITIIES_IN_TOUR - 1; i++){
+    for(int i = 0; i < CITIIES_IN_TOUR; i++){
         double r = realDistribution(gen);
         if(MUTATION_RATE >= r){
             if (CITIIES_IN_TOUR - 1 == i){
