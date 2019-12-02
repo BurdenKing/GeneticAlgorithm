@@ -25,31 +25,31 @@ private:
     int POPULATION_SIZE;
 
     //The minimum number of times the algorithm should iterate.
-    static constexpr int ITERATIONS = 1000;
+    int ITERATIONS = 1000;
 
     //The largest legal coordinate
-    static constexpr int MAP_BOUNDARY = 1000;
+    int MAP_BOUNDARY = 1000;
 
     /*
      * The number of members randomly selected from the population whenchoosing a parent,
      * from which the fittest is made a ’parent'.
      */
-    static constexpr int PARENT_POOL_SIZE = 5;
+    int PARENT_POOL_SIZE = 5;
 
     //Mutation rate.
-    static constexpr double MUTATION_RATE = 0.15;
+    double MUTATION_RATE = 0.15;
 
     //Number of elite tour.
-    static constexpr int NUMBER_OF_ELITES = 1;
+    int NUMBER_OF_ELITES = 1;
 
     /*
      *  percentage that indicates what percent the new elite fitness
      *  needs toimprove over the base distance before exiting the algorithm loop
      */
-    static constexpr double IMPROVEMENT_FACTOR = 0.15;
+    double IMPROVEMENT_FACTOR = 0.15;
 
     //Scalar.
-    static constexpr double SCALAR = 10000.0;
+    double SCALAR = 10000.0;
 
 
     /**

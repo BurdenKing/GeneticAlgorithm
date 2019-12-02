@@ -32,12 +32,6 @@ public:
      * @param y y-coordinate.
      */
     city(char n, int x, int y) : name(n) {
-        if(x < 0 || x > 1000){
-            throw "X must be an integer between 0 and 1000";
-        }
-        if(y < 0 || y > 1000){
-            throw "Y must be an integer between 0 and 1000";
-        }
         this->x = x;
         this->y = y;
     }

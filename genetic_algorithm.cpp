@@ -34,7 +34,7 @@ tour genetic_algorithm::crossover(tour &a, tour &b) {
         child.cities.push_back(a.cities[i]);
     }
 
-    for(int j = 0; j < random; j++){
+    for(int j = 0; j < CITIIES_IN_TOUR; j++){
         if(random >= CITIIES_IN_TOUR)
             break;
         if(!(contains_city(child, b.cities[j]))){
@@ -46,11 +46,11 @@ tour genetic_algorithm::crossover(tour &a, tour &b) {
 }
 
 void genetic_algorithm::mutate(tour &a) {
-    default_random_engine gen(time(0));
+    default_random_engine generator(time(0));
     uniform_real_distribution<double> realDistribution(0,1);
 
     for(int i = 0; i < CITIIES_IN_TOUR; i++){
-        double r = realDistribution(gen);
+        double r = realDistribution(generator);
         if(MUTATION_RATE >= r){
             if (CITIIES_IN_TOUR - 1 == i){
                 city tmp = a.cities[i];
@@ -72,7 +72,7 @@ void genetic_algorithm::mutateAll(vector<tour> &p) {
 }
 
 bool genetic_algorithm::contains_city(tour &t, city &c) {
-    for(unsigned int i = 0; i < CITIIES_IN_TOUR - 1; i++){
+    for(unsigned int i = 0; i < t.cities.size(); i++){
         if(t.cities[i].getName() == c.getName() &&
             t.cities[i].getX() == c.getX() &&
             t.cities[i].getY() == c.getY()){
@@ -111,7 +111,7 @@ vector<tour> genetic_algorithm::getParent(vector<tour> &p) {
 
 vector<tour> genetic_algorithm::getCrossovers(vector<tour> &p) {
     vector<tour> crossovers;
-    for (int i = NUMBER_OF_ELITES; i < POPULATION_SIZE ; ++i) {
+    for (int i = NUMBER_OF_ELITES; i < POPULATION_SIZE ; i++) {
 
         vector<tour> parentGroup1 = getParent(p);
         vector<tour> parentGroup2 = getParent(p);
@@ -130,8 +130,8 @@ vector<tour> genetic_algorithm::getCrossovers(vector<tour> &p) {
 }
 
 void genetic_algorithm::moveEliteToFirst(vector<tour> &p) {
-    unsigned int elite = 0;
-    for(unsigned long i = 0; i < p.size(); i++){
+    int elite = 0;
+    for(unsigned int i = 0; i < p.size(); i++){
         if(p[elite].getFitness() < p[i].getFitness()){
             elite = i;
         }
@@ -145,8 +145,8 @@ void genetic_algorithm::moveEliteToFirst(vector<tour> &p) {
 }
 
 void genetic_algorithm::toString(tour &t) {
-    for(auto & citie : t.cities){
-        cout << citie.getName() << " ";
+    for(auto c : t.cities){
+        cout << c.getName() << " ";
     }
     cout <<"|||| Fitness level: " << t.getFitness() << "  Distance: " << get_tour_distance(t) << endl;
 }
@@ -201,7 +201,7 @@ void genetic_algorithm::genetic_driver(int num_of_cities, int size_of_population
 
         if (IMPROVEMENT_FACTOR < improv) {
             algoFinished = true;
-            cout << "Algorithm finished.......";
+            cout << "Algorithm finished......." << endl;
             break;
         }
     }
