@@ -1,6 +1,6 @@
 # GeneticAlgorithm
 
 Lawrence Zheng
-A00851121
 
-100% Finished.
+
+A command line application to solve traveling salesman problem using Genetic Algorithm written in C++.
